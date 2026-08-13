@@ -53,7 +53,6 @@ export const TalkingHead: React.FC = () => {
         <Series>
           {SOURCE_SEGMENTS.map((segment, i) => (
             <Series.Sequence
-               
               key={i}
               durationInFrames={segment.endAt - segment.startFrom}
               layout="none"
