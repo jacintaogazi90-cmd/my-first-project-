@@ -144,7 +144,7 @@ export default async function RoomDetailPage({ params }: { params: Promise<{ slu
           ))}
         </Reveal>
         <Reveal className="mt-10">
-          <Link href="/rooms" className="text-body-sm text-brass underline-offset-4 hover:underline">
+          <Link href="/rooms" className="inline-flex min-h-11 items-center text-body-sm text-brass underline-offset-4 hover:underline">
             See all five room types →
           </Link>
         </Reveal>

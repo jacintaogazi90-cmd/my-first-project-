@@ -66,9 +66,11 @@ export default function SiteHeader() {
         aria-hidden="true"
       />
       <div className="shell relative flex h-[72px] items-center justify-between gap-6">
+        {/* gap replaces the whitespace inline-flex collapses between the two
+            words; min-h-11 keeps the wordmark a comfortable tap target. */}
         <Link
           href="/"
-          className="font-display text-[1.35rem] font-light tracking-[0.14em] text-bone"
+          className="inline-flex min-h-11 items-center gap-[0.3em] font-display text-[1.35rem] font-light tracking-[0.14em] text-bone"
           aria-label={`${hotel.name} — home`}
         >
           EKO <span className="text-brass">LUMIÈRE</span>

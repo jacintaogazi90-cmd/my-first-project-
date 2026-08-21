@@ -273,6 +273,17 @@ targets is Phase 5.
 - Hover effects are wrapped in `@media (hover: hover)` via Tailwind's
   `hoverOnlyWhenSupported`, so a tap on Android never leaves a card stuck in its
   hover state.
+- Every interactive element clears a 44×44px tap target at 375px. Room cards
+  measure smaller than that on their heading link alone, but a full-card overlay
+  makes the whole 335×546 card the hit area.
+- Secondary body copy is 16px on phones, tapering to 15px from the 768px
+  breakpoint up, so phone reading gets the larger minimum while the cards keep
+  the density they are designed for.
+- The WhatsApp brand green (#128C7E) measures 4.14:1 against white at body size
+  and is therefore not used. The token is darkened to #0F7A6D (5.2:1).
+- All 250 text nodes outside the hero were measured against the ground actually
+  painted behind them; all pass. No horizontal overflow at 375, 768, 1024 or
+  1440px.
 - **Hero contrast is measured, not assumed.** `npm run check:contrast` replaces
   the hero photograph with pure white — the brightest image anyone could ever
   supply — and measures each piece of copy against the pixels actually painted

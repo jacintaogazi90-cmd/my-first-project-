@@ -35,6 +35,13 @@ const config: Config = {
           deep: '#8A6A2F',
           soft: '#E2CFA4',
         },
+        // WhatsApp brand green, darkened until white text on it clears AA.
+        // The published brand green (#128C7E) measures 4.14:1 against white at
+        // our body size — below the 4.5:1 floor — so it is not used.
+        whatsapp: {
+          DEFAULT: '#0F7A6D', // 5.2:1 with white
+          hover: '#0C6459', // 7.0:1 with white
+        },
         // Body copy tuned per ground.
         muted: {
           onDark: '#B4B1A9', // 8.1:1 on ink-900
@@ -53,7 +60,12 @@ const config: Config = {
         'display-sm': ['clamp(1.375rem, 1.15rem + 1.1vw, 2rem)', { lineHeight: '1.2' }],
         'body-lg': ['clamp(1.0625rem, 1rem + 0.35vw, 1.25rem)', { lineHeight: '1.65' }],
         body: ['1rem', { lineHeight: '1.7' }],
-        'body-sm': ['0.9375rem', { lineHeight: '1.6' }],
+        /*
+         * Secondary copy. 16px up to roughly 410px wide, tapering to 15px by
+         * the 640px breakpoint: phone reading gets the 16px minimum, while
+         * larger screens keep the tighter density the cards are designed for.
+         */
+        'body-sm': ['clamp(0.9375rem, 1.2rem - 0.75vw, 1rem)', { lineHeight: '1.6' }],
         eyebrow: ['0.75rem', { lineHeight: '1.2', letterSpacing: '0.18em' }],
       },
       spacing: {

@@ -41,7 +41,7 @@ export default function ContactPage() {
                   href={whatsappLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-card bg-[#128C7E] px-5 py-4 text-body-sm font-medium text-white transition-colors duration-200 ease-smooth hover:bg-[#0F7468]"
+                  className="flex items-center gap-3 rounded-card bg-whatsapp px-5 py-4 text-body-sm font-medium text-white transition-colors duration-200 ease-smooth hover:bg-whatsapp-hover"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   WhatsApp reservations
@@ -52,7 +52,7 @@ export default function ContactPage() {
                 <div className="border-t border-bone/10 pt-5">
                   <dt className="text-body-sm text-muted-onDark">Phone</dt>
                   <dd className="mt-1">
-                    <a href={`tel:${hotel.phoneHref}`} className="text-body-lg text-bone hover:text-brass">
+                    <a href={`tel:${hotel.phoneHref}`} className="inline-flex min-h-11 items-center text-body-lg text-bone hover:text-brass">
                       {hotel.phone}
                     </a>
                   </dd>
@@ -60,7 +60,7 @@ export default function ContactPage() {
                 <div className="border-t border-bone/10 pt-5">
                   <dt className="text-body-sm text-muted-onDark">Email</dt>
                   <dd className="mt-1">
-                    <a href={`mailto:${hotel.email}`} className="text-body-lg text-bone hover:text-brass">
+                    <a href={`mailto:${hotel.email}`} className="inline-flex min-h-11 items-center text-body-lg text-bone hover:text-brass">
                       {hotel.email}
                     </a>
                   </dd>

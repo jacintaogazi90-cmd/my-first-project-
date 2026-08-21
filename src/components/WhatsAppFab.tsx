@@ -39,7 +39,7 @@ export default function WhatsAppFab() {
       href={whatsappLink({ roomType })}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 rounded-card bg-[#128C7E] px-4 py-3.5 text-body-sm font-medium text-white shadow-lift transition-colors duration-200 ease-smooth hover:bg-[#0F7468] sm:bottom-8 sm:right-8"
+      className="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 rounded-card bg-whatsapp px-4 py-3.5 text-body-sm font-medium text-white shadow-lift transition-colors duration-200 ease-smooth hover:bg-whatsapp-hover sm:bottom-8 sm:right-8"
       data-reveal=""
       initial={{ opacity: 0, y: 12 }}
       animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}

@@ -233,7 +233,7 @@ export default function HomePage() {
           </RevealItem>
           <RevealItem as="p" short className="mt-6 text-body-sm text-muted-onDark">
             Or call{' '}
-            <Link href={`tel:${hotel.phoneHref}`} className="text-brass underline-offset-4 hover:underline">
+            <Link href={`tel:${hotel.phoneHref}`} className="inline-flex min-h-11 items-center text-brass underline-offset-4 hover:underline">
               {hotel.phone}
             </Link>
           </RevealItem>

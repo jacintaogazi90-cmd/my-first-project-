@@ -4,6 +4,9 @@ import { whatsappLink } from '@/lib/whatsapp';
 import { ButtonLink } from '@/components/ui/Button';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
+/** 44px minimum tap target — footer links are the most commonly under-sized. */
+const TAP = 'inline-flex min-h-11 items-center';
+
 export default function SiteFooter() {
   const year = new Date().getFullYear();
 
@@ -29,16 +32,18 @@ export default function SiteFooter() {
 
           <nav aria-label="Footer">
             <h2 className="eyebrow text-brass">Explore</h2>
-            <ul className="mt-5 space-y-3">
+            {/* No space-y: each link carries its own 44px tap height, which
+                provides the rhythm and the touch target at once. */}
+            <ul className="mt-3">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-body-sm text-muted-onDark transition-colors duration-200 ease-smooth hover:text-bone">
+                  <Link href={item.href} className={`${TAP} text-body-sm text-muted-onDark transition-colors duration-200 ease-smooth hover:text-bone`}>
                     {item.label}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/booking" className="text-body-sm text-muted-onDark transition-colors duration-200 ease-smooth hover:text-bone">
+                <Link href="/booking" className={`${TAP} text-body-sm text-muted-onDark transition-colors duration-200 ease-smooth hover:text-bone`}>
                   Booking
                 </Link>
               </li>
@@ -54,12 +59,12 @@ export default function SiteFooter() {
                 {hotel.address.locality}, {hotel.address.region}
               </p>
               <p>
-                <a href={`tel:${hotel.phoneHref}`} className="transition-colors duration-200 ease-smooth hover:text-bone">
+                <a href={`tel:${hotel.phoneHref}`} className={`${TAP} transition-colors duration-200 ease-smooth hover:text-bone`}>
                   {hotel.phone}
                 </a>
               </p>
               <p>
-                <a href={`mailto:${hotel.email}`} className="transition-colors duration-200 ease-smooth hover:text-bone">
+                <a href={`mailto:${hotel.email}`} className={`${TAP} transition-colors duration-200 ease-smooth hover:text-bone`}>
                   {hotel.email}
                 </a>
               </p>

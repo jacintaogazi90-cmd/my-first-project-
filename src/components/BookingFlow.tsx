@@ -158,14 +158,14 @@ export default function BookingFlow() {
                   href={whatsappLink({ roomType: room.name, checkIn, checkOut })}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-7 inline-flex items-center gap-2 rounded-card bg-[#128C7E] px-6 py-3.5 text-body-sm font-medium tracking-wide text-white transition-colors duration-200 ease-smooth hover:bg-[#0F7468]"
+                  className="mt-7 inline-flex items-center gap-2 rounded-card bg-whatsapp px-6 py-3.5 text-body-sm font-medium tracking-wide text-white transition-colors duration-200 ease-smooth hover:bg-whatsapp-hover"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   Open WhatsApp with these details
                 </a>
                 <p className="mt-5 text-body-sm text-muted-onDark">
                   Prefer to call?{' '}
-                  <a href={`tel:${hotel.phoneHref}`} className="text-brass underline-offset-4 hover:underline">
+                  <a href={`tel:${hotel.phoneHref}`} className="inline-flex min-h-11 items-center text-brass underline-offset-4 hover:underline">
                     {hotel.phone}
                   </a>
                 </p>
@@ -205,7 +205,7 @@ export default function BookingFlow() {
                   href={whatsappLink({ roomType: room.name, checkIn, checkOut })}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-7 inline-flex items-center gap-2 rounded-card bg-[#128C7E] px-6 py-3.5 text-body-sm font-medium tracking-wide text-white transition-colors duration-200 ease-smooth hover:bg-[#0F7468]"
+                  className="mt-7 inline-flex items-center gap-2 rounded-card bg-whatsapp px-6 py-3.5 text-body-sm font-medium tracking-wide text-white transition-colors duration-200 ease-smooth hover:bg-whatsapp-hover"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   Meanwhile, book over WhatsApp

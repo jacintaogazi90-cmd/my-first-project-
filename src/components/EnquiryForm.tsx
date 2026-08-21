@@ -77,7 +77,7 @@ export default function EnquiryForm({ defaults = {} }: { defaults?: EnquiryDefau
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-card bg-[#128C7E] px-4 py-2.5 text-body-sm font-medium text-white hover:bg-[#0F7468]"
+            className="inline-flex items-center gap-2 rounded-card bg-whatsapp px-4 py-2.5 text-body-sm font-medium text-white hover:bg-whatsapp-hover"
           >
             <WhatsAppIcon className="h-4 w-4" />
             WhatsApp us

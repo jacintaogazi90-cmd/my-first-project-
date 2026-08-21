@@ -12,8 +12,8 @@ const variants: Record<Variant, string> = {
   primary: 'bg-brass text-ink-900 hover:bg-brass-soft',
   secondary: 'border border-bone/35 text-bone hover:border-bone hover:bg-bone/10',
   ghost: 'text-brass-deep underline-offset-4 hover:underline',
-  // WhatsApp brand green, white text on #128C7E is 4.6:1.
-  whatsapp: 'bg-[#128C7E] text-white hover:bg-[#0F7468]',
+  // WhatsApp green, darkened to clear AA with white text. See the token.
+  whatsapp: 'bg-whatsapp text-white hover:bg-whatsapp-hover',
 };
 
 const sizes: Record<Size, string> = {

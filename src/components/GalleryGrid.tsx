@@ -86,7 +86,7 @@ export default function GalleryGrid({ initialFilter = 'all' }: { initialFilter?:
               type="button"
               aria-pressed={selected}
               onClick={() => setFilter(category.id as Filter)}
-              className={`rounded-card border px-4 py-2 text-body-sm transition-colors duration-200 ease-smooth ${
+              className={`inline-flex min-h-11 items-center rounded-card border px-4 text-body-sm transition-colors duration-200 ease-smooth ${
                 selected
                   ? 'border-brass bg-brass text-ink-900'
                   : 'border-bone/25 text-muted-onDark hover:border-bone hover:text-bone'
