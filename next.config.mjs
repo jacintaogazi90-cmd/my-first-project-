@@ -7,6 +7,9 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 414, 640, 828, 1080, 1280, 1920],
     imageSizes: [96, 160, 256, 384],
+    // Every quality value used anywhere in the app must be declared, or Next
+    // warns on each image and will error from Next 16.
+    qualities: [60, 62, 65, 68, 72],
   },
   poweredByHeader: false,
 };

@@ -61,7 +61,13 @@ const motionBootstrap = `(function(){try{var d=document.documentElement;d.classL
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-NG" className={`${display.variable} ${sans.variable} no-js`}>
+    /*
+     * suppressHydrationWarning is required here, not optional: the bootstrap
+     * script below strips `no-js` and Lenis adds its own class, both before
+     * React hydrates. Without it React logs a className mismatch on every load.
+     * It suppresses one level only — this element — so nothing else is masked.
+     */
+    <html lang="en-NG" className={`${display.variable} ${sans.variable} no-js`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionBootstrap }} />
         <noscript>

@@ -158,6 +158,42 @@ Verified: with JavaScript disabled entirely, 0 of 63 revealing elements on the
 home page remain hidden. Same with reduced motion set, and same with every
 JavaScript chunk blocked.
 
+### If nothing animates
+
+Work down this list; it is ordered by how often each one turns out to be the cause.
+
+1. **Check you are running the app, not opening a file.** This repository still
+   contains an unrelated `index.html` at its root from earlier work in it — it is
+   a watch brand landing page, nothing to do with this site. Opening it directly
+   gets you that page. The hotel site only exists once a server is running:
+
+   ```bash
+   npm install
+   npm run dev      # then open http://localhost:3000
+   ```
+
+2. **Check your operating system's reduced-motion setting.** If it is on, this
+   site disables every decorative animation on purpose, and the result is
+   indistinguishable from the motion being broken. In development the console
+   says so on load:
+
+   ```
+   [motion] prefers-reduced-motion is ON, so all decorative animation is disabled by design.
+   ```
+
+   Turn it off under macOS System Settings → Accessibility → Display → Reduce
+   motion, or Windows Settings → Accessibility → Visual effects → Animation
+   effects.
+
+   When motion is running, the same place logs
+   `[motion] enabled — 63 elements armed for scroll reveal.`
+
+3. **Scroll.** Apart from the hero, the motion is scroll-triggered by design.
+   A still screenshot of any section below the fold shows its finished state.
+
+4. **Check the branch.** The site lives on `claude/build-with-prompt-0iheh3`.
+   The default branch does not have it.
+
 ---
 
 ## Booking paths

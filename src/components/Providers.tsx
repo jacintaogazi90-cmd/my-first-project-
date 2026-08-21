@@ -28,6 +28,33 @@ export default function Providers({ children }: { children: ReactNode }) {
       window.__motionFailsafe = undefined;
     }
     document.documentElement.classList.remove('motion-timeout');
+
+    /*
+     * Development-only diagnostic.
+     *
+     * When the operating system asks for reduced motion this site correctly
+     * disables every animation — which is indistinguishable, from the outside,
+     * from the motion being broken. Saying so out loud saves an afternoon.
+     */
+    if (process.env.NODE_ENV !== 'production') {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) {
+        console.info(
+          '%c[motion]%c prefers-reduced-motion is ON, so all decorative animation is disabled by design.\n' +
+            'Turn it off to see the motion: macOS System Settings → Accessibility → Display → Reduce motion.\n' +
+            'Windows: Settings → Accessibility → Visual effects → Animation effects.',
+          'color:#C8A25C;font-weight:600',
+          'color:inherit',
+        );
+      } else {
+        const armed = document.querySelectorAll('[data-reveal]').length;
+        console.info(
+          `%c[motion]%c enabled — ${armed} elements armed for scroll reveal.`,
+          'color:#C8A25C;font-weight:600',
+          'color:inherit',
+        );
+      }
+    }
   }, []);
 
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
