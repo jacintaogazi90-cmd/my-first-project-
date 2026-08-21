@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    /* Lenis needs this off; we re-enable it for the reduced-motion path below. */
+    scroll-behavior: auto;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink-900 text-bone font-sans antialiased;
+    /* Prevents the horizontal scrollbar that hero overscale would otherwise cause. */
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-brass text-ink-900;
+  }
+
+  /* Visible focus on everything, always. Never remove this. */
+  :focus-visible {
+    outline: 2px solid theme('colors.brass.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Lenis: smooths the wheel, never takes control of it. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-gutter;
+  }
+
+  .eyebrow {
+    @apply text-eyebrow font-medium uppercase tracking-[0.18em];
+  }
+
+  /*
+   * The scrim behind the hero copy.
+   *
+   * Its ramp is not decorative — it is what makes text over a photograph pass
+   * WCAG AA. The strong band covers the bottom two thirds where the copy sits
+   * and clears by the top, so the photograph still reads. Verified in
+   * contrast.mjs against a pure-white stand-in image, which is the brightest
+   * photograph anyone could ever hand us: if it passes there it passes with the
+   * real photography.
+   */
+  .hero-scrim {
+    background: linear-gradient(
+      to top,
+      rgba(11, 12, 15, 0.94) 0%,
+      rgba(11, 12, 15, 0.9) 50%,
+      rgba(11, 12, 15, 0.86) 68%,
+      rgba(11, 12, 15, 0.34) 86%,
+      rgba(11, 12, 15, 0.14) 100%
+    );
+  }
+}
+
+/*
+ * Accessibility requirement, not a nicety.
+ *
+ * When reduced motion is requested every decorative and scroll-triggered
+ * animation is cancelled and content renders in its final state. The
+ * `[data-reveal]` rule is the safety net: it forces revealed content visible
+ * even if a JS animation never runs. Motion's own variants are gated
+ * separately in src/lib/motion.ts.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/*
+ * No-JS and pre-hydration safety net.
+ *
+ * Server-rendered markup carries the final styles; Motion only ever animates
+ * *from* an offset once it has mounted. Nothing is hidden waiting for JS.
+ */
+.no-js [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/*
+ * Reveal safety nets.
+ *
+ * `.reduce-motion` is set by the head bootstrap before first paint when the OS
+ * asks for reduced motion. `.motion-timeout` is the hydration failsafe, armed
+ * by the same script and cancelled by Providers once React mounts. Either one
+ * forces every revealing element into its final state, with `!important` so it
+ * beats the inline styles Motion writes.
+ */
+.motion-timeout [data-reveal],
+.reduce-motion [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/*
+ * Hero entrance — CSS, not JS, on purpose.
+ *
+ * The hero is the first thing painted. Driving its entrance from Motion would
+ * mean the headline sits at opacity 0 in the server HTML until hydration, which
+ * on a 3G connection is seconds of blank hero and a wrecked LCP. A CSS
+ * animation starts at first paint, needs no JavaScript at all, and is disabled
+ * by the prefers-reduced-motion block below.
+ */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes hint-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger, 70ms apart. */
+.hero-rise-1 { animation-delay: 80ms; }
+.hero-rise-2 { animation-delay: 150ms; }
+.hero-rise-3 { animation-delay: 220ms; }
+.hero-rise-4 { animation-delay: 290ms; }
+
+/* Ken Burns: 1.0 → 1.08 over 20s, linear, once. Ambient, not an entrance —
+   the one place the 200–600ms rule does not apply. */
+.ken-burns {
+  animation: ken-burns 20s linear both;
+  will-change: transform;
+}
+
+.hint-fade {
+  animation: hint-fade 400ms ease-out 1200ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hint-fade {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ken-burns {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* Applied by the gallery once an image reports `load`. */
+.img-fade-in {
+  animation: hint-fade 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/*
+ * Numerals.
+ *
+ * The display serif has no naira glyph, so a price set in it borrows the ₦ from
+ * a fallback face and the figures stop lining up. Prices therefore run in the
+ * sans face with tabular, lining figures — the one place the type system bends,
+ * and it bends because a misread rate is a real problem.
+ */
+.price {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+/* Stats stay in the display face; this just keeps them off the baseline-hopping
+   oldstyle figures. */
+.figure {
+  font-variant-numeric: lining-nums;
+}
