@@ -1,0 +1,44 @@
+Maintain the original room, environment, lighting, and the person's identity
+exactly as they are. Do not alter the face, facial features, hairstyle,
+clothing, body proportions, room layout, background objects, or overall
+appearance. The room and the person must remain perfectly consistent
+throughout the entire video.
+
+Do not modify the dialogue, voice, speech timing, pacing, lip sync, facial
+performance, or audio in any way. The spoken content must remain identical to
+the source. The only changes should be the virtual camera framing and angle.
+
+Use fast, clean hard cuts between camera angles. Do not morph, blend,
+interpolate, zoom, or animate the transition. Every camera change should feel
+like an instant cut to another camera while maintaining perfect continuity.
+
+Shot sequence:
+
+* At [1.0s]:
+  Cut to a left-side profile B-roll style framing. Keep the subject naturally speaking
+  to the original conversation while viewed from the left.
+
+* At [4.5s]:
+  Hard cut to a extreme high angle. The woman briefly looks upward toward the
+  camera while continuing to speak naturally. Do not change the speech or
+  expression beyond the required eye direction.
+
+* At [7.8s]:
+  Hard cut to a close-up of her face. Preserve
+  facial proportions and identity exactly.
+
+* At [14.0s]:
+  Hard cut back to the original camera position and framing, matching the
+  opening shot perfectly.
+
+Critical requirements:
+
+* Preserve the person's face exactly.
+* Preserve the room exactly.
+* No changes to audio.
+* No changes to speech pacing or timing.
+* No changes to lip sync.
+* No changes to facial identity or room layout.
+* Only the camera position changes through hard cuts.
+* Every shot should appear as if captured simultaneously by multiple
+  professional cameras in the same room.
